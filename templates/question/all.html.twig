@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+<link rel="stylesheet" href=" {{ asset('build/questions-list.css') }}" >
+{% endblock %}
+{% block javascripts %}
+    <script src="https://kit.fontawesome.com/640b361ca9.js" crossorigin="anonymous"></script>
+{% endblock %} 
+{% block body %}
+<div class="container">
+    <div class="question-list">
+    {% for question in questions %}
+        <div class="question">
+            <div class="image-container">
+                <img src="{{ asset(question.image) }}" alt=""> 
+            </div>
+            <div class="question-content">
+                {{ question.question}}
+            </div>
+            <div class="choices">
+                {% if question.getChoixes().get(0).isCorrect() == 1  %}
+                    <div class="choice true">{{ question.getChoixes().get(0).getChoix()}}</div>
+                {% else %}
+                    <div class="choice">{{ question.getChoixes().get(0).getChoix()}}</div>
+                {% endif %}  
+                {% if question.getChoixes().get(1).isCorrect() == 1  %}
+                    <div class="choice true">{{ question.getChoixes().get(1).getChoix()}}</div>
+                {% else %}
+                    <div class="choice">{{ question.getChoixes().get(1).getChoix()}}</div>
+                {% endif %} 
+                {% if question.getChoixes().get(2).isCorrect() == 1  %} 
+                    <div class="choice true">{{ question.getChoixes().get(2).getChoix()}}</div>
+                {% else %}
+                    <div class="choice">{{ question.getChoixes().get(2).getChoix()}}</div>
+                {% endif %} 
+            </div>
+            <div class="actions">
+                <div class="btn">
+                    <a href="{{path('question_modifier' , {'id':question.id})}}" class="update-quest">modifier</a>
+                    <a href="{{path('question_supprimer' , {'id' : question.id})}}" class="delete-quest">supprimer</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<a class="add-question" href="{{path('questionapp_question_add')}}">Ajouter question</a>
+<a class="users-list" href="{{path('users.all_users')}}">liste des utilisateurs</a>
+<a class="lessons-list" href="{{path('app_lessons_all')}}">liste des lessons</a>
+<a class="all-lessons" href="{{path('app_categories')}}">retour</a>
+{% endblock %}

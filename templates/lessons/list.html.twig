@@ -1,0 +1,19 @@
+{% extends user is null ? 'before.html.twig' : 'after.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('build/lessons-by-categorie.css') }}">
+{% endblock %}
+{% block javascripts %}
+    <script src="https://kit.fontawesome.com/640b361ca9.js" crossorigin="anonymous"></script>
+{% endblock %}
+{% block body %}
+    <div class="container">
+    <h4 class="categorie-name">{{categorie}}</h4>
+    {% if lessons|length > 0 %}
+    {% for index , lesson in lessons %}
+        <a href="{{ asset('uploads/') ~ lesson.fileName }}" target="blank" class="lesson-link">الدرس {{index + 1}} </a>  
+    {% endfor %}
+    {% else %}
+        <h4> No lessons at the moment </h4>
+    {% endif %}
+    </div>
+{% endblock %}

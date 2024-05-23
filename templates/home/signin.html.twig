@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ar-fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{asset('build/signin.css')}}"> 
+{% endblock %}
+{% block javascripts %}
+    <script src="https://kit.fontawesome.com/640b361ca9.js" crossorigin="anonymous"></script>
+{% endblock %}
+    <title></title>
+</head>
+<body>
+<div class="form-container">
+    <h2>ACRO</h2>
+    <h5>créer un nouveau compte</h5>
+{{form_start(form)}}
+    <div class="form-field">
+        {{form_label(form.prenom)}}
+        <div class="input-field">
+            <div class="field-icon"><i class="fa-solid fa-user"></i></div>
+            {{form_widget(form.prenom)}}
+        </div>
+    </div>
+    <div class="form-field">
+        {{form_label(form.nom)}}
+        <div class="input-field">
+            <div class="field-icon"><i class="fa-solid fa-user"></i></div>
+            {{form_widget(form.nom)}}
+        </div>
+    </div>
+    <div class="form-field">
+        {{form_label(form.email)}}
+        <div class="input-field">
+            <div class="field-icon"><i class="fa-solid fa-envelope"></i></div>
+            {{form_widget(form.email)}}
+        </div>
+    </div>
+    <div class="form-field">
+        {{form_label(form.password)}}
+        <div class="input-field">
+            <div class="field-icon"><i class="fa-solid fa-lock"></i></div>
+            {{form_widget(form.password)}}
+        </div>
+    </div>
+    <div class="btn">
+        <button type="submit">Créer</button>
+    </div>
+    {{form_end(form)}}
+<div>    
+</body>
+</html>
+
